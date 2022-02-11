@@ -1,0 +1,15 @@
+.game-board {
+  background-color: red;
+  width: 360px;
+  height: 360px;
+  margin-left: 0.2em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.square {
+  background-color: aquamarine;
+  width: 175px;
+  height: 175px;
+}

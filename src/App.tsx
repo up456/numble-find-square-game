@@ -1,7 +1,14 @@
-import './App.css';
+import GameProgressInformation from './components/gameProgressInformation';
+import GameZone from './components/gameZone';
+import './css/app.css';
 
 function App() {
-  return <h1>hello</h1>;
+  return (
+    <>
+      <GameProgressInformation />
+      <GameZone />
+    </>
+  );
 }
 
 export default App;
