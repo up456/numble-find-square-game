@@ -1,7 +1,6 @@
 .game-board {
-  background-color: red;
   width: 360px;
-  height: 360px;
+  height: 359.792px;
   margin-left: 0.2em;
   display: flex;
   flex-wrap: wrap;
