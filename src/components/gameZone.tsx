@@ -7,7 +7,9 @@ const GameZone = (props: { stage: number; onClick: (event: any) => void }) => {
   const [randomRgb3, setRandomRgb3] = useState(Math.floor(Math.random() * 230));
 
   const block = Math.pow(Math.floor(props.stage / 2) + 1, 2);
-  const randomIndex = Math.floor(Math.random() * block);
+  const [randomIndex, setRandomIndex] = useState(
+    Math.floor(Math.random() * block)
+  );
 
   const diffrentColorGap = 60 - props.stage * 2;
 
@@ -15,6 +17,7 @@ const GameZone = (props: { stage: number; onClick: (event: any) => void }) => {
     setRandomRgb1(Math.floor(Math.random() * 230));
     setRandomRgb2(Math.floor(Math.random() * 230));
     setRandomRgb3(Math.floor(Math.random() * 230));
+    setRandomIndex(Math.floor(Math.random() * block));
   }, [props.stage]);
 
   const newStyle = {
