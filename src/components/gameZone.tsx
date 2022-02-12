@@ -6,7 +6,7 @@ const GameZone = (props: { stage: number; onClick: (event: any) => void }) => {
   const [randomRgb2, setRandomRgb2] = useState(Math.floor(Math.random() * 230));
   const [randomRgb3, setRandomRgb3] = useState(Math.floor(Math.random() * 230));
 
-  const block = Math.pow(Math.floor(props.stage / 2) + 1, 2);
+  const block = Math.pow(Math.floor((props.stage + 1) / 2) + 1, 2);
   const [randomIndex, setRandomIndex] = useState(
     Math.floor(Math.random() * block)
   );
