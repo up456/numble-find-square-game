@@ -7,6 +7,7 @@ function App() {
   const [stage, setStage] = useState(1);
   const [time, setTime] = useState(15);
   const [score, setScore] = useState(0);
+  const [lastStage, setLastStage] = useState(20);
 
   const handleClickSquare = (event: any) => {
     if (event.target.dataset.id === 'equivalent') {
@@ -18,18 +19,30 @@ function App() {
     }
   };
 
+  const gameReset = (message: string) => {
+    alert(`${message}
+스테이지:${stage}, 점수:${score}`);
+    setStage(1);
+    setTime(15);
+    setScore(0);
+  };
+
+  const handleLastStageChange = (changeValue: string) => {
+    setLastStage(Number(changeValue));
+    gameReset('최종스테이지 변경 다시시작');
+  };
+
   useEffect(() => {
     let timer = setInterval(() => {
       setTime((prevTime) => prevTime - 1);
     }, 1000);
-
+    if (stage > lastStage) {
+      clearInterval(timer);
+      gameReset('ARRIVE LAST STAGE!!');
+    }
     if (time < 1) {
       clearInterval(timer);
-      alert(`GAME OVER!
-스테이지:${stage}, 점수:${score}`);
-      setStage(1);
-      setTime(15);
-      setScore(0);
+      gameReset('GAME OVER!!');
     }
     return () => {
       clearInterval(timer);
@@ -38,8 +51,17 @@ function App() {
 
   return (
     <>
-      <GameProgressInformation stage={stage} time={time} score={score} />
-      <GameZone stage={stage} onClick={handleClickSquare} />
+      <GameProgressInformation
+        stage={stage}
+        time={time}
+        score={score}
+        onChange={handleLastStageChange}
+      />
+      <GameZone
+        stage={stage}
+        onClick={handleClickSquare}
+        lastStage={lastStage}
+      />
     </>
   );
 }

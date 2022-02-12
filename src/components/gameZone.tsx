@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import '../css/gameZone.css';
 
-const GameZone = (props: { stage: number; onClick: (event: any) => void }) => {
+const GameZone = (props: {
+  stage: number;
+  onClick: (event: any) => void;
+  lastStage: number;
+}) => {
   const [randomRgb1, setRandomRgb1] = useState(Math.floor(Math.random() * 230));
   const [randomRgb2, setRandomRgb2] = useState(Math.floor(Math.random() * 230));
   const [randomRgb3, setRandomRgb3] = useState(Math.floor(Math.random() * 230));
@@ -11,7 +15,7 @@ const GameZone = (props: { stage: number; onClick: (event: any) => void }) => {
     Math.floor(Math.random() * block)
   );
 
-  const diffrentColorGap = 60 - props.stage * 2;
+  const diffrentColorGap = props.lastStage * 2 - props.stage * 2;
 
   useEffect(() => {
     setRandomRgb1(Math.floor(Math.random() * 230));
