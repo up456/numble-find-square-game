@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../css/gameZone.css';
 
 const GameZone = (props: { stage: number; onClick: (event: any) => void }) => {
+  const [randomRgb1, setRandomRgb1] = useState(Math.floor(Math.random() * 230));
+  const [randomRgb2, setRandomRgb2] = useState(Math.floor(Math.random() * 230));
+  const [randomRgb3, setRandomRgb3] = useState(Math.floor(Math.random() * 230));
+
   const block = Math.pow(Math.floor(props.stage / 2) + 1, 2);
   const randomIndex = Math.floor(Math.random() * block);
 
-  const randomRgb1 = Math.floor(Math.random() * 230);
-  const randomRgb2 = Math.floor(Math.random() * 230);
-  const randomRgb3 = Math.floor(Math.random() * 230);
   const diffrentColorGap = 60 - props.stage * 2;
+
+  useEffect(() => {
+    setRandomRgb1(Math.floor(Math.random() * 230));
+    setRandomRgb2(Math.floor(Math.random() * 230));
+    setRandomRgb3(Math.floor(Math.random() * 230));
+  }, [props.stage]);
 
   const newStyle = {
     backgroundColor: `rgb(${randomRgb1}, ${randomRgb2} ,${randomRgb3})`,
