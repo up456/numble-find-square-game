@@ -7,14 +7,14 @@ function App() {
   const [stage, setStage] = useState(1);
   const [time, setTime] = useState(15);
   const [score, setScore] = useState(0);
-  const [lastStage, setLastStage] = useState(20);
+  const [lastStage, setLastStage] = useState(25);
 
   const handleClickSquare = (event: any) => {
     if (event.target.dataset.id === 'equivalent') {
       setTime((prevTime) => prevTime - 3);
     } else {
       setStage((prevStage) => prevStage + 1);
-      setScore((prevScore) => prevScore + stage * stage * time);
+      setScore((prevScore) => prevScore + stage * stage * stage * time);
       setTime(15);
     }
   };

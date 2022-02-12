@@ -1,4 +1,3 @@
-import React, { useRef } from 'react';
 import '../css/gameProgressInformation.css';
 
 type GameProgressInformationType = (props: {
@@ -14,8 +13,6 @@ const GameProgressInformation: GameProgressInformationType = ({
   score,
   onChange,
 }) => {
-  const formRef = useRef();
-
   const handleLastStageChange = (event: any) => {
     event.preventDefault();
     onChange(event.target['lastStage'].value);
