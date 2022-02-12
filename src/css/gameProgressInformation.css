@@ -22,4 +22,8 @@ header {
   border-radius: 5px;
   background-color: lightblue;
   padding: 1px 5px;
+  box-shadow: .6px .6px .6px .6px gray;
+}
+.btn:hover {
+  opacity: .8;
 }
