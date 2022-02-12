@@ -29,7 +29,7 @@ function App() {
 
   const handleLastStageChange = (changeValue: string) => {
     setLastStage(Number(changeValue));
-    gameReset('최종스테이지 변경 다시시작');
+    gameReset(`최종스테이지 변경 다시시작!`);
   };
 
   useEffect(() => {

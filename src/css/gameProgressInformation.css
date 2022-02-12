@@ -1,9 +1,25 @@
 header {
   display: flex;
 }
-.lastStage-from {
-  margin-left: 0.2em;
+.lastStage-form {
+  margin-left: 10px;
+}
+.lastStage-form > label {
+  font-size: 0.8rem;
+  margin-right: 0.2em;
+}
+.fa-gear {
+  color: lightblue;
+  font-size: 0.9rem;
 }
 #lastStage {
-  
+  width: 40px;
+  margin-right: 0.2em;
+}
+
+.btn {
+  border: none;
+  border-radius: 5px;
+  background-color: lightblue;
+  padding: 1px 5px;
 }

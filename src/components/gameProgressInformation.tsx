@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import '../css/gameProgressInformation.css';
 
 type GameProgressInformationType = (props: {
@@ -14,8 +14,11 @@ const GameProgressInformation: GameProgressInformationType = ({
   score,
   onChange,
 }) => {
+  const formRef = useRef();
+
   const handleLastStageChange = (event: any) => {
-    onChange(event.target.value);
+    event.preventDefault();
+    onChange(event.target['lastStage'].value);
   };
 
   return (
@@ -23,16 +26,18 @@ const GameProgressInformation: GameProgressInformationType = ({
       <span>
         스테이지: {stage}, 남은 시간: {time}, 점수: {score}
       </span>
-      <form className="lastStage-from">
-        <label htmlFor="lastStage">최종 스테이지</label>
+      <form className="lastStage-form" onSubmit={handleLastStageChange}>
+        <label htmlFor="lastStage">
+          <i className="fa-solid fa-gear"></i>최종스테이지
+        </label>
         <input
           type="number"
           id="lastStage"
-          onChange={handleLastStageChange}
-          value={25}
+          placeholder="25"
           min={20}
           max={50}
         />
+        <button className="btn">변경</button>
       </form>
     </header>
   );
