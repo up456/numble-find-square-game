@@ -13,8 +13,28 @@ function App() {
       setTime((prevTime) => prevTime - 3);
     } else {
       setStage((prevStage) => prevStage + 1);
+      setScore((prevScore) => prevScore + stage * stage * time);
+      setTime(15);
     }
   };
+
+  useEffect(() => {
+    let timer = setInterval(() => {
+      setTime((prevTime) => prevTime - 1);
+    }, 1000);
+
+    if (time < 1) {
+      clearInterval(timer);
+      alert(`GAME OVER!
+스테이지:${stage}, 점수:${score}`);
+      setStage(1);
+      setTime(15);
+      setScore(0);
+    }
+    return () => {
+      clearInterval(timer);
+    };
+  }, [time]);
 
   return (
     <>
