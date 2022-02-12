@@ -22,8 +22,8 @@ const GameZone = (props: { stage: number; onClick: (event: any) => void }) => {
 
   const newStyle = {
     backgroundColor: `rgb(${randomRgb1}, ${randomRgb2} ,${randomRgb3})`,
-    width: `${Math.floor(340 / Math.pow(block, 0.5)) + 0.7}px`,
-    height: `${Math.floor(340 / Math.pow(block, 0.5)) + 0.7}px`,
+    width: `${Math.floor(340 / Math.pow(block, 0.5))}px`,
+    height: `${Math.floor(340 / Math.pow(block, 0.5))}px`,
   };
   const diffrentStyle = {
     ...newStyle,
