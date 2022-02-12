@@ -1,10 +1,16 @@
 import '../css/gameProgressInformation.css';
 
+// 중요 기본값
+const MIN_STAGE = 20;
+const MAX_STAGE = 50;
+
+// 컴포넌트
 type GameProgressInformationType = (props: {
   stage: number;
   time: number;
   score: number;
   onChange: (changeValue: string) => void;
+  defaultLastStage: number;
 }) => JSX.Element;
 
 const GameProgressInformation: GameProgressInformationType = ({
@@ -12,6 +18,7 @@ const GameProgressInformation: GameProgressInformationType = ({
   time,
   score,
   onChange,
+  defaultLastStage,
 }) => {
   const handleLastStageChange = (event: any) => {
     event.preventDefault();
@@ -30,9 +37,9 @@ const GameProgressInformation: GameProgressInformationType = ({
         <input
           type="number"
           id="lastStage"
-          placeholder="25"
-          min={20}
-          max={50}
+          placeholder={String(defaultLastStage)}
+          min={MIN_STAGE}
+          max={MAX_STAGE}
         />
         <button className="btn">변경</button>
       </form>

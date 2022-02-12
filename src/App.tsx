@@ -3,11 +3,18 @@ import GameProgressInformation from './components/gameProgressInformation';
 import GameZone from './components/gameZone';
 import './css/app.css';
 
+// 중요 기본값
+const DEFAULT_STAGE = 1;
+const DEFAULT_TIME = 15;
+const DEFAULT_SCORE = 0;
+const DEFAULT_LAST_STAGE = 25;
+
+// 컴포넌트
 function App() {
-  const [stage, setStage] = useState(1);
-  const [time, setTime] = useState(15);
-  const [score, setScore] = useState(0);
-  const [lastStage, setLastStage] = useState(25);
+  const [stage, setStage] = useState(DEFAULT_STAGE);
+  const [time, setTime] = useState(DEFAULT_TIME);
+  const [score, setScore] = useState(DEFAULT_SCORE);
+  const [lastStage, setLastStage] = useState(DEFAULT_LAST_STAGE);
 
   const handleClickSquare = (event: any) => {
     if (event.target.dataset.id === 'equivalent') {
@@ -15,16 +22,16 @@ function App() {
     } else {
       setStage((prevStage) => prevStage + 1);
       setScore((prevScore) => prevScore + stage * stage * stage * time);
-      setTime(15);
+      setTime(DEFAULT_TIME);
     }
   };
 
   const gameReset = (message: string) => {
     alert(`${message}
 스테이지:${stage}, 점수:${score}`);
-    setStage(1);
-    setTime(15);
-    setScore(0);
+    setStage(DEFAULT_STAGE);
+    setTime(DEFAULT_TIME);
+    setScore(DEFAULT_SCORE);
   };
 
   const handleLastStageChange = (changeValue: string) => {
@@ -56,6 +63,7 @@ function App() {
         time={time}
         score={score}
         onChange={handleLastStageChange}
+        defaultLastStage={DEFAULT_LAST_STAGE}
       />
       <GameZone
         stage={stage}

@@ -1,28 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import '../css/gameZone.css';
 
-const GameZone = (props: {
+// 중요 기본값
+const MAX_COLOR = 230;
+
+// 공용 함수
+const getRandomNumber = (maxNumber: number) => {
+  return Math.floor(Math.random() * maxNumber);
+};
+
+// 컴포넌트
+type GameZoneType = (props: {
   stage: number;
   onClick: (event: any) => void;
   lastStage: number;
-}) => {
-  const [randomRgb1, setRandomRgb1] = useState(Math.floor(Math.random() * 230));
-  const [randomRgb2, setRandomRgb2] = useState(Math.floor(Math.random() * 230));
-  const [randomRgb3, setRandomRgb3] = useState(Math.floor(Math.random() * 230));
+}) => JSX.Element;
 
-  const block = Math.pow(Math.floor((props.stage + 1) / 2) + 1, 2);
-  const [randomIndex, setRandomIndex] = useState(
-    Math.floor(Math.random() * block)
-  );
+const GameZone: GameZoneType = ({ stage, onClick, lastStage }) => {
+  const [randomRgb1, setRandomRgb1] = useState(getRandomNumber(MAX_COLOR));
+  const [randomRgb2, setRandomRgb2] = useState(getRandomNumber(MAX_COLOR));
+  const [randomRgb3, setRandomRgb3] = useState(getRandomNumber(MAX_COLOR));
 
-  const diffrentColorGap = props.lastStage * 2 - props.stage * 2;
+  const block = Math.pow(Math.floor((stage + 1) / 2) + 1, 2);
+  const [randomIndex, setRandomIndex] = useState(getRandomNumber(block));
+
+  const diffrentColorGap = lastStage * 2 - stage * 2;
 
   useEffect(() => {
-    setRandomRgb1(Math.floor(Math.random() * 230));
-    setRandomRgb2(Math.floor(Math.random() * 230));
-    setRandomRgb3(Math.floor(Math.random() * 230));
-    setRandomIndex(Math.floor(Math.random() * block));
-  }, [props.stage]);
+    setRandomRgb1(getRandomNumber(MAX_COLOR));
+    setRandomRgb2(getRandomNumber(MAX_COLOR));
+    setRandomRgb3(getRandomNumber(MAX_COLOR));
+    setRandomIndex(getRandomNumber(block));
+  }, [stage]);
 
   const newStyle = {
     backgroundColor: `rgb(${randomRgb1}, ${randomRgb2} ,${randomRgb3})`,
@@ -46,7 +55,7 @@ const GameZone = (props: {
               style={diffrentStyle}
               key={index}
               data-id="diffrent"
-              onClick={props.onClick}
+              onClick={onClick}
             ></div>
           );
         }
@@ -55,7 +64,7 @@ const GameZone = (props: {
             style={newStyle}
             key={index}
             data-id="equivalent"
-            onClick={props.onClick}
+            onClick={onClick}
           ></div>
         );
       })}
