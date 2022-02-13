@@ -45,26 +45,29 @@ function App() {
 
   const handleLastStageChange = (changeValue: string) => {
     setLastStage(Number(changeValue));
+    stopBgm();
     gameReset(`최종스테이지 변경 다시시작!`);
   };
 
   useEffect(() => {
-    let timer = setInterval(() => {
-      setTime((prevTime) => prevTime - 1);
-    }, 1000);
-    if (stage > lastStage) {
-      clearInterval(timer);
-      stopBgm();
-      gameReset('ARRIVE LAST STAGE!!');
+    if (playing) {
+      let timer = setInterval(() => {
+        setTime((prevTime) => prevTime - 1);
+      }, 1000);
+      if (stage > lastStage) {
+        clearInterval(timer);
+        stopBgm();
+        gameReset('ARRIVE LAST STAGE!!');
+      }
+      if (time < 1) {
+        clearInterval(timer);
+        stopBgm();
+        gameReset('GAME OVER!!');
+      }
+      return () => {
+        clearInterval(timer);
+      };
     }
-    if (time < 1) {
-      clearInterval(timer);
-      stopBgm();
-      gameReset('GAME OVER!!');
-    }
-    return () => {
-      clearInterval(timer);
-    };
   }, [time]);
 
   return (
