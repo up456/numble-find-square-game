@@ -1,6 +1,9 @@
-const rightSound = new Audio(require('./sound/rightSound.mp3'));
-const wrongSound = new Audio(require('./sound/wrongSound.mp3'));
-const bgmSound = new Audio(require('./sound/bgm.mp3'));
+const rightSound = createSound('rightSound');
+const wrongSound = createSound('wrongSound');
+const bgmSound = createSound('bgmSound');
+const gameOverSound = createSound('gameOverSound');
+const gameWinSound = createSound('gameWinSound');
+const moveSound = createSound('moveSound');
 
 export const playRight = () => {
   playSound(rightSound);
@@ -14,6 +17,19 @@ export const playBgm = () => {
 export const stopBgm = () => {
   stopSound(bgmSound);
 };
+export const playGameOver = () => {
+  playSound(gameOverSound);
+};
+export const playGameWin = () => {
+  playSound(gameWinSound);
+};
+export const playMove = () => {
+  playSound(moveSound);
+};
+// 생성 함수
+function createSound(src: string) {
+  return new Audio(require(`./sound/${src}.mp3`));
+}
 
 function playSound(sound: HTMLAudioElement) {
   sound.currentTime = 0;

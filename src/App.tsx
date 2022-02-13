@@ -2,7 +2,15 @@ import { useEffect, useState } from 'react';
 import GameProgressInformation from './components/gameProgressInformation';
 import GameZone from './components/gameZone';
 import './css/app.css';
-import { playBgm, playRight, playWrong, stopBgm } from './sound';
+import {
+  playBgm,
+  playGameOver,
+  playGameWin,
+  playMove,
+  playRight,
+  playWrong,
+  stopBgm,
+} from './sound';
 
 // 중요 기본값
 const DEFAULT_STAGE = 1;
@@ -34,9 +42,9 @@ function App() {
     }
   };
 
-  const gameReset = (message: string) => {
+  const gameReset = (message: string, arrive: boolean = false) => {
     alert(`${message}
-스테이지:${stage}, 점수:${score}`);
+스테이지:${arrive ? stage - 1 : stage}, 점수:${score}`);
     setStage(DEFAULT_STAGE);
     setTime(DEFAULT_TIME);
     setScore(DEFAULT_SCORE);
@@ -46,6 +54,7 @@ function App() {
   const handleLastStageChange = (changeValue: string) => {
     setLastStage(Number(changeValue));
     stopBgm();
+    playMove();
     gameReset(`최종스테이지 변경 다시시작!`);
   };
 
@@ -57,11 +66,15 @@ function App() {
       if (stage > lastStage) {
         clearInterval(timer);
         stopBgm();
-        gameReset('ARRIVE LAST STAGE!!');
+        playGameWin();
+        setTimeout(() => {
+          gameReset('ARRIVE LAST STAGE!!', true);
+        }, 10);
       }
       if (time < 1) {
         clearInterval(timer);
         stopBgm();
+        playGameOver();
         gameReset('GAME OVER!!');
       }
       return () => {
