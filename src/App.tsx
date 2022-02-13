@@ -69,7 +69,7 @@ function App() {
         playGameWin();
         setTimeout(() => {
           gameReset('ARRIVE LAST STAGE!!', true);
-        }, 10);
+        }, 100);
       }
       if (time < 1) {
         clearInterval(timer);
