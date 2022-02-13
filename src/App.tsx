@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import GameProgressInformation from './components/gameProgressInformation';
 import GameZone from './components/gameZone';
 import './css/app.css';
+import { playRight, playWrong } from './sound';
 
 // 중요 기본값
 const DEFAULT_STAGE = 1;
@@ -19,10 +20,12 @@ function App() {
   const handleClickSquare = (event: any) => {
     if (event.target.dataset.id === 'equivalent') {
       setTime((prevTime) => prevTime - 3);
+      playWrong();
     } else {
       setStage((prevStage) => prevStage + 1);
       setScore((prevScore) => prevScore + stage * stage * stage * time);
       setTime(DEFAULT_TIME);
+      playRight();
     }
   };
 
