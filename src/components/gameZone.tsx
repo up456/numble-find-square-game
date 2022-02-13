@@ -56,6 +56,7 @@ const GameZone: GameZoneType = ({ stage, onClick, lastStage }) => {
               key={index}
               data-id="diffrent"
               onClick={onClick}
+              className="block"
             ></div>
           );
         }
@@ -65,6 +66,7 @@ const GameZone: GameZoneType = ({ stage, onClick, lastStage }) => {
             key={index}
             data-id="equivalent"
             onClick={onClick}
+            className="block"
           ></div>
         );
       })}

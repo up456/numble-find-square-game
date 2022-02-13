@@ -7,3 +7,10 @@
   justify-content: space-around;
   align-items: center;
 }
+.block {
+  transition: transform 300ms;
+}
+.block:hover {
+  transform: scale(1.05);
+  border: 1px solid black;
+}

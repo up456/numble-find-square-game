@@ -65,8 +65,8 @@ function App() {
       }, 1000);
       if (stage > lastStage) {
         clearInterval(timer);
-        stopBgm();
         playGameWin();
+        stopBgm();
         setTimeout(() => {
           gameReset('ARRIVE LAST STAGE!!', true);
         }, 100);
