@@ -68,7 +68,7 @@ function App() {
         clearInterval(timer);
       };
     }
-  }, [time]);
+  });
 
   return (
     <>

@@ -31,7 +31,7 @@ const GameZone: GameZoneType = ({ stage, onClick, lastStage }) => {
     setRandomRgb2(getRandomNumber(MAX_COLOR));
     setRandomRgb3(getRandomNumber(MAX_COLOR));
     setRandomIndex(getRandomNumber(block));
-  }, [stage]);
+  }, [stage, block]);
 
   const newStyle = {
     backgroundColor: `rgb(${randomRgb1}, ${randomRgb2} ,${randomRgb3})`,
