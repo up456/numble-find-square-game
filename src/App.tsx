@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import GameProgressInformation from './components/gameProgressInformation';
 import GameZone from './components/gameZone';
 import './css/app.css';
-import { playRight, playWrong } from './sound';
+import { playBgm, playRight, playWrong, stopBgm } from './sound';
 
 // 중요 기본값
 const DEFAULT_STAGE = 1;
@@ -16,8 +16,13 @@ function App() {
   const [time, setTime] = useState(DEFAULT_TIME);
   const [score, setScore] = useState(DEFAULT_SCORE);
   const [lastStage, setLastStage] = useState(DEFAULT_LAST_STAGE);
+  const [playing, setPlaying] = useState(false);
 
   const handleClickSquare = (event: any) => {
+    if (!playing) {
+      playBgm();
+      setPlaying(true);
+    }
     if (event.target.dataset.id === 'equivalent') {
       setTime((prevTime) => prevTime - 3);
       playWrong();
@@ -35,6 +40,7 @@ function App() {
     setStage(DEFAULT_STAGE);
     setTime(DEFAULT_TIME);
     setScore(DEFAULT_SCORE);
+    setPlaying(false);
   };
 
   const handleLastStageChange = (changeValue: string) => {
@@ -48,10 +54,12 @@ function App() {
     }, 1000);
     if (stage > lastStage) {
       clearInterval(timer);
+      stopBgm();
       gameReset('ARRIVE LAST STAGE!!');
     }
     if (time < 1) {
       clearInterval(timer);
+      stopBgm();
       gameReset('GAME OVER!!');
     }
     return () => {
