@@ -1,6 +1,6 @@
-const rightSound = new Audio('../public/sound/rightSound.mp3');
-const wrongSound = new Audio('../public/sound/wrongSound.mp3');
-const bgmSound = new Audio('../public/sound/bgmSound.mp3');
+const rightSound = new Audio(require('./sound/rightSound.mp3'));
+const wrongSound = new Audio(require('./sound/wrongSound.mp3'));
+const bgmSound = new Audio(require('./sound/bgm.mp3'));
 
 export const playRight = () => {
   playSound(rightSound);
